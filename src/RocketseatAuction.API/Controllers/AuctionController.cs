@@ -9,10 +9,8 @@ namespace RocketseatAuction.API.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(Auction), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public IActionResult GetCurrentAutcion()
+        public IActionResult GetCurrentAutcion([FromServices] GetCurrentAuctionsUseCase useCase)
         {
-            var useCase = new GetCurrentAuctionsUseCase();
-
             var result = useCase.Execute();
 
             if (result is null) return NoContent();
